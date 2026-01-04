@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 	
 	if (argc >= 3) //Checks if a 3rd argument was typed
 	{
-		if (strncmp,(argv[2] , "--mode=" , 7) == 0)
+		if (strncmp(argv[2] , "--mode=" , 7) == 0)
 		{
 			mode = argv[2] + 7; // Skip the first 7 characters ("--mode=") to point directly to the text that comes after it
 		}
