@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int count_walking_cost(int lower_stop, int upper_stop, int *dests, int numPeople);
+
 void solve_recurse(int numPeople, int numStops, int *dests);
 void solve_brute(int numPeople, int numStops, int *dests);
 void solve_memoize(int numPeople, int numStops, int *dests);
