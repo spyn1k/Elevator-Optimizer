@@ -6,7 +6,7 @@ long long get_m(int i, int j, int numPeople, int *dests, int max_floor)
 	//base case 
 	if (i == 0)
 	{
-		return count_walking_cost(0, max_floor, dests, numPeople);
+		return count_walking_cost(0, 1000000000, dests, numPeople);
 	}
 
 	long long min_val = -1; //-1 -> havent found a cost yet
@@ -16,9 +16,9 @@ long long get_m(int i, int j, int numPeople, int *dests, int max_floor)
 		long long m_prev = get_m(i - 1, k, numPeople, dests, max_floor); //get cost for i-1 stops ending at k
 	
 		//walking adjustments
-		int fw_k_inf = count_walking_cost(k, max_floor, dests, numPeople);
+		int fw_k_inf = count_walking_cost(k, 1000000000, dests, numPeople);
 		int fw_k_j = count_walking_cost(k, j, dests, numPeople);
-		int fw_j_inf = count_walking_cost(j, max_floor, dests, numPeople);
+		int fw_j_inf = count_walking_cost(j, 1000000000, dests, numPeople);
 
 		//combine them
 		long long current_val = m_prev - fw_k_inf + fw_k_j + fw_j_inf;
