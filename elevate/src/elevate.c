@@ -123,9 +123,9 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-	int count_walking_cost(int lower_stop, int upper_stop, int *dests, int numPeople)
+	long long count_walking_cost(int lower_stop, int upper_stop, int *dests, int numPeople)
 	{
-		int total_cost = 0;
+		long long total_cost = 0;
 
 		for (int i=0; i < numPeople ; i++)
 		{

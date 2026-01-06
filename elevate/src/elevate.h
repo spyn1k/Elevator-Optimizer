@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 //helper function to calculate walking cost, it is defined in elevate.c 
-int count_walking_cost(int lower_stop, int upper_stop, int *dests, int numPeople);
+long long count_walking_cost(int lower_stop, int upper_stop, int *dests, int numPeople);
 
 //solvers for the 4 different modes
 //each in their own files
