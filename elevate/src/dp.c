@@ -17,6 +17,12 @@ void solve_dp(int numPeople, int numStops, int *dests)
 		if (dests[i] > max_floor) max_floor = dests[i];
 	}
 
+	//if we have more stops than floors cap it
+        if (numStops > max_floor)
+        {
+                numStops = max_floor;
+        }
+
 	//alloc dp table
 	//i = rows (number of stops), j = cols(floor loc of the ith stop)
 	long long **dp = (long long**)malloc((numStops + 1) * sizeof(long long*));

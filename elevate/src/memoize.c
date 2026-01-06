@@ -66,6 +66,12 @@ void solve_memoize(int numPeople, int numStops, int *dests)
 		if (dests[i] > max_floor) max_floor = dests[i];
 	}
 
+	//if we have more stops than floors cap it
+	if (numStops > max_floor) 
+	{
+       		numStops = max_floor;
+    	}
+
 	//rows = stops, cols = floors
 	memo = (long long**)malloc((numStops + 1) * sizeof(long long *));
 
