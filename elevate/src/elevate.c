@@ -1,3 +1,10 @@
+/**
+ * File: elevate.c
+ * elevate.c is the main driver
+ * Handles command-line arguments, reads the input file, and decides 
+ * which solver to run (brute, recurse, memoize, or dp).
+ **/
+
 #include "elevate.h"
 #include <stdio.h>
 #include <stdlib.h>

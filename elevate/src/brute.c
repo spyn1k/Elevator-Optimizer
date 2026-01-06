@@ -1,3 +1,10 @@
+/**
+ * File: brute.c
+ * brute.c is a Brute Force Solver
+ * Generates every possible combination of stops to find the absolute 
+ * minimum cost and used in order to verify the other methods
+ **/
+
 #include "elevate.h"
 
 //global tracking for best solution

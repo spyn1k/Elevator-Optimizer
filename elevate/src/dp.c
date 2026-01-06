@@ -1,3 +1,9 @@
+/**
+ * File: dp.c
+ * it is a dynamic programming solver (Bottom-Up)
+ * Fills the cost table repeatedly from 0 stops up to N stops
+ */
+
 #include "elevate.h"
 #include <stdlib.h>
 

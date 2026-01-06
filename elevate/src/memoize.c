@@ -1,3 +1,10 @@
+/**
+ * File: memoize.c
+ * it offers memoized recursion
+ * Adds a memo table to the recursive logic 
+ * drastically speeds up performance by saving results we already calculated
+ */
+
 #include "elevate.h"
 #include <stdlib.h>
 	

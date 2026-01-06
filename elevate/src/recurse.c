@@ -1,3 +1,9 @@
+/**
+ * File: recurse.c
+ * recurse.c is a Naive Recursive Solver
+ * It implements the core mathematical formula 
+ * slow because it recalculates the same sub-problems
+ **/
 #include "elevate.h" 
 
 //function to calculate formula
