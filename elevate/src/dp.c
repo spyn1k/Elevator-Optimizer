@@ -78,20 +78,20 @@ void solve_dp(int numPeople, int numStops, int *dests,int debug)
 
 	/*--DEBUG PRINTING--*/
 	if (debug)
-	{
-		for (int i = 0;i <= numStops; i++)
-		{
-			for(int j = 0; j <= max_floor; j++)
+	{	
+		for (int i = 0;i <= numStops; i++)//loop through every number of stops
+		{										//this loop prints the dp table
+			for(int j = 0; j <= max_floor; j++)//loop through every number of floors
 			{
-				if (j < max_floor)
+				if (j < max_floor) //if we are not at the end of the line
 				{
 					printf("%2lld ", dp[i][j]);
 				}
-				else
+				else //if we are at the end of the line
 				{
 					printf("%2lld", dp[i][j]);
 				}
-			}
+			}//move to next line
 			printf("\n");
 		}
 	}
