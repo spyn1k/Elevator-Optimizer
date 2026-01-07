@@ -14,6 +14,6 @@ long long count_walking_cost(int lower_stop, int upper_stop, int *dests, int num
 void solve_recurse(int numPeople, int numStops, int *dests);
 void solve_brute(int numPeople, int numStops, int *dests);
 void solve_memoize(int numPeople, int numStops, int *dests);
-void solve_dp(int numPeople, int numStops, int *dests);
+void solve_dp(int numPeople, int numStops, int *dests, int debug);
 
 #endif

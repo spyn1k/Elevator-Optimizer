@@ -78,19 +78,25 @@ int main(int argc, char *argv[])
 	/*Since we have all the data in RAM we need*/
 
 	fclose(file); //Closing file connection
-	
-	/*Default Mode*/ 
-	char *mode = "dp";
 
-	
-	if (argc >= 3) //Checks if a 3rd argument was typed
+	/*Arugment Parsing*/
+
+	char *mode = "dp"; //Default Mode
+	int debug = 0;	   //Default debug off
+
+	// Check optional arguments starting from index 2
+	for (int i = 2; i < argc; i++)
 	{
-		if (strncmp(argv[2] , "--mode=" , 7) == 0)
-		{
-			mode = argv[2] + 7; // Skip the first 7 characters ("--mode=") to point directly to the text that comes after it
+		if (strncmp(argv[i], "--mode=", 7) == 0)
+		{	
+			mode = argv[i] + 7;
 		}
+			else if (strcmp(argv[i], "--debug") == 0)
+			{
+				debug = 1;
+			}
 	}
-		
+
 
 	/*EXECUTE THE CHOSEN STRATEGY*/
 
@@ -110,11 +116,11 @@ int main(int argc, char *argv[])
 		}
 		else if (strcmp(mode, "dp") == 0)
 		{
-			solve_dp(numPeople,numStops,dests);
+			solve_dp(numPeople,numStops,dests,debug);
 		}
 			else //If mode is unknown, it turns into default (dp)
 			{
-				solve_dp(numPeople,numStops,dests);
+				solve_dp(numPeople,numStops,dests,debug);
 			}
 	
 	//cleanup

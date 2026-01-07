@@ -102,9 +102,17 @@ void solve_memoize(int numPeople, int numStops, int *dests)
 		}
 	}
 
-	printf("Last stop at floor : %d\n", best_last_stop);
-	printf("The minimum cost is : %lld\n", global_min_cost);
-
+	if (best_last_stop == 0) 
+	{
+    	printf("No lift stops\n");
+	} 
+		else 
+		{
+		    printf("Last stop at floor: %d\n", best_last_stop);
+		}
+	
+	printf("The minimum cost is: %lld\n", global_min_cost);
+	
 	for (int i = 0; i <= numStops; i++)
 	{
 		free(memo[i]);

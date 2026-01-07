@@ -100,17 +100,17 @@ void solve_brute(int numPeople, int numStops, int *dests)
 	    
 	    //only walking cost (from the ground)
 	    long long walk_cost = count_walking_cost(0, 1000000000, dests, numPeople);
-	    printf("The minimum cost is : %lld\n", walk_cost);
+	    printf("The minimum cost is: %lld\n", walk_cost);
     } 
     else
     {
-	    printf("Lift stops are :");
+	    printf("Lift stops are:");
 	    for (int i = 0; i < best_num_stops_brute; i++)
 	    {
 		    printf(" %d", best_stops_brute[i]);
 	    }
 	    printf("\n");
-	    printf("The minimum cost is : %lld\n", best_cost_brute);
+	    printf("The minimum cost is: %lld\n", best_cost_brute);
     }
 
     /*---CLEANUP---*/

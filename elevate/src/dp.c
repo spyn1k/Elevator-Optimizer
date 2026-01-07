@@ -7,7 +7,7 @@
 #include "elevate.h"
 #include <stdlib.h>
 
-void solve_dp(int numPeople, int numStops, int *dests)
+void solve_dp(int numPeople, int numStops, int *dests,int debug)
 {   
 	//find max floor
 	int max_floor = 0;
@@ -26,19 +26,22 @@ void solve_dp(int numPeople, int numStops, int *dests)
 	//alloc dp table
 	//i = rows (number of stops), j = cols(floor loc of the ith stop)
 	long long **dp = (long long**)malloc((numStops + 1) * sizeof(long long*));
+	int **parent = (int**)malloc((numStops + 1) * sizeof(int*)); //table to reconstruct path
 
 	for (int i = 0; i <= numStops; i++)
 	{
-		dp[i] = (long long *)malloc((max_floor + 1)* sizeof(long long));			
+		dp[i] = (long long *)malloc((max_floor + 1)* sizeof(long long));
+		parent[i] =(int *)malloc((max_floor + 1)* sizeof(int));
 	}
 
-	//base case
+	//base case 0 stops
 	//cost stays the same regardless of j
 	long long base_cost = count_walking_cost(0, 1000000000, dests, numPeople);
 
 	for (int j = 0; j <= max_floor; j++)
 	{
 		dp[0][j] = base_cost;
+		parent[0][j] = 0; //Predecessor of base case is ground
 	}
 
 	//fill table
@@ -47,9 +50,11 @@ void solve_dp(int numPeople, int numStops, int *dests)
 		for (int j =0; j <= max_floor; j++) //trying every possible flor
 		{
 			long long min_val = -1;
-			for (int k = 0; k <= j; k++) //best 'k' to minimize cost
+			int best_k = 0; //to store best previous stop
+
+			for (int k = 0; k <= j; k++) 	//best 'k' to minimize cost
 			{
-				long long m_prev = dp[i-1][k];//look at previous stop at 'k'
+				long long m_prev = dp[i-1][k];	//look at previous stop at 'k'
 			
 				int fw_k_inf = count_walking_cost(k, 1000000000, dests, numPeople);
 				int fw_k_j = count_walking_cost(k, j, dests, numPeople);
@@ -61,12 +66,37 @@ void solve_dp(int numPeople, int numStops, int *dests)
 				if (min_val == -1 || current_val < min_val)
 				{
 					min_val = current_val;
+					best_k = k;
 				}
 			}
 			//save best cost for this cell
 			dp[i][j] = min_val;
+			parent[i][j] = best_k; //remember where we came from
 		}
 	}
+	
+
+	/*--DEBUG PRINTING--*/
+	if (debug)
+	{
+		for (int i = 0;i <= numStops; i++)
+		{
+			for(int j = 0; j <= max_floor; j++)
+			{
+				if (j < max_floor)
+				{
+					printf("%2lld ", dp[i][j]);
+				}
+				else
+				{
+					printf("%2lld", dp[i][j]);
+				}
+			}
+			printf("\n");
+		}
+	}
+
+
 	//find global min
 	//look at last row and find best floor col
 	long long global_min_cost = -1;
@@ -82,13 +112,50 @@ void solve_dp(int numPeople, int numStops, int *dests)
 			best_last_stop = j;
 		}
 	}
+
+	if (best_last_stop == 0)
+	{
+		printf("No lift stops\n");
+		printf("The minimum cost is: %lld\n", global_min_cost);
+	}
+	else
+	{
+
+		//Reconstruct path using parent table
+		//store them in array cause we backtrack
+		int *final_stops = malloc((numStops + 1) * sizeof(int));
+		int count = 0;
+
+		int curr_floor = best_last_stop;
+		int curr_stop_idx = numStops;
 	
-	printf("Last stop at floor : %d\n", best_last_stop);
-	printf("The minimum cost is : %lld\n", global_min_cost);
+		//Backtrack
+		while(curr_stop_idx > 0 && curr_floor > 0)
+		{
+			final_stops[count++] = curr_floor;
+			curr_floor = parent[curr_stop_idx][curr_floor];
+			curr_stop_idx--;
+		}
+
+		printf("Lift stops are:");
+
+		//print in correct order (reverse backtrack)
+		for (int k = count - 1; k >= 0; k--)
+		{
+			printf(" %d", final_stops[k]);
+		}
+
+		printf("\n");
+		printf("The minimum cost is: %lld\n", global_min_cost);
+
+		free(final_stops);
+	}
 
 	for (int i = 0; i <= numStops; i++)
 	{
 		free(dp[i]);
+		free(parent[i]);
 	}
 	free(dp);
+	free(parent);
 }
