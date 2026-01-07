@@ -108,7 +108,7 @@ Inside our loops (iterating `k` from 0 to `j`) the formula becomes
 
 ***[4]*** ___[Wikipedia – Dynamic Programming](https://en.wikipedia.org/wiki/Dynamic_programming)___
 
-***[5]***___[Wikipedia – Recursion](https://en.wikipedia.org/wiki/Recursion_(computer_science))___
+***[5]*** ___[Wikipedia – Recursion](https://en.wikipedia.org/wiki/Recursion_(computer_science))___
 
 ***[6]*** ___[GeeksforGeeks – Tabulation (Bottom-Up)](https://www.geeksforgeeks.org/tabulation-vs-memoization/)___
 
