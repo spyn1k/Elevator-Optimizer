@@ -77,7 +77,7 @@ After comparing the performance of all four methods with the time command , **Dy
 * **Efficiency:** It works systematically from the ground up making sure no work is repeated and making the program run as fast as possible.
 
                                                            FORMULA TRANSLATION
-***Mapping the Mathematical Model to C Code***
+***Implementing the mathematical formula to C Code***
 
 The assignment provided the following recursive relation for finding the minimum cost:
 
